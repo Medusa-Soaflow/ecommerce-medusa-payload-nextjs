@@ -1,6 +1,8 @@
 import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk";
 import { PAYLOAD_MODULE } from "../../modules/payload";
 
+import type PayloadModuleService from "../../modules/payload/payload.service";
+
 type StepInput = {
   collection: string;
   where: Record<string, any>;
@@ -9,7 +11,7 @@ type StepInput = {
 export const deletePayloadItemsStep = createStep(
   "delete-payload-items",
   async ({ where, collection }: StepInput, { container }) => {
-    const payloadModuleService = container.resolve(PAYLOAD_MODULE);
+    const payloadModuleService = container.resolve<PayloadModuleService>(PAYLOAD_MODULE);
 
     const prevData = await payloadModuleService.find(collection, {
       where,
@@ -33,7 +35,7 @@ export const deletePayloadItemsStep = createStep(
     }
     const { prevData, collection } = data;
 
-    const payloadModuleService = container.resolve(PAYLOAD_MODULE);
+    const payloadModuleService = container.resolve<PayloadModuleService>(PAYLOAD_MODULE);
 
     for (const item of prevData.docs) {
       await payloadModuleService.create(collection, item);

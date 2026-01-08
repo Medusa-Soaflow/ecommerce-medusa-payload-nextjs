@@ -44,8 +44,8 @@ export const createPayloadProductVariantWorkflow = createWorkflow(
         const items: Record<string, PayloadUpsertData> = {};
 
         data.productVariants.forEach((variant) => {
-          const payloadProduct = // @ts-expect-error
-          variant.product?.payload_product as PayloadCollectionItem;
+          const payloadProduct = // @ts-ignore
+            variant.product?.payload_product as PayloadCollectionItem;
           if (!payloadProduct) {
             return;
           }
