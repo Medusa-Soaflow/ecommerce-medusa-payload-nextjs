@@ -10,7 +10,7 @@ services:
     container_name: medusa_backend
     environment:
       NODE_ENV: development
-      DATABASE_URL: postgres://postgres:postgres@database:5432/medusa
+      DATABASE_URL: postgres://postgres:postgres@database:5432/soaflow_medusa
       REDIS_URL: redis://redis:6379
       STORE_CORS: http://localhost:8000,http://localhost:3000
       ADMIN_CORS: http://localhost:7001,http://localhost:3000
@@ -90,7 +90,7 @@ services:
     environment:
       POSTGRES_PASSWORD: postgres
       POSTGRES_USER: postgres
-      POSTGRES_DB: medusa
+      POSTGRES_DB: soaflow_medusa
     ports:
       - "5432:5432"
     networks:
