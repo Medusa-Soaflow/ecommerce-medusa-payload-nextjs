@@ -15,6 +15,7 @@ import {
 export const retrieveCollection = async (id: string) => {
   const next = {
     ...(await getCacheOptions("collections")),
+    tags: ["collections"],
   }
 
   return sdk.client
@@ -33,6 +34,7 @@ export const listCollections = async (
 ): Promise<{ collections: HttpTypes.StoreCollection[]; count: number }> => {
   const next = {
     ...(await getCacheOptions("collections")),
+    tags: ["collections"],
   }
 
   queryParams.limit = queryParams.limit || 100
@@ -80,6 +82,7 @@ export const getCollectionByHandle = async (
 ): Promise<HttpTypes.StoreCollection> => {
   const next = {
     ...(await getCacheOptions("collections")),
+    tags: ["collections"],
   }
 
   return sdk.client
