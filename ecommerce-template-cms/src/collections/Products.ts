@@ -1,8 +1,9 @@
 import {
-  convertLexicalToMarkdown,
   convertMarkdownToLexical,
   editorConfigFactory,
 } from '@payloadcms/richtext-lexical'
+
+import { revalidateStorefront } from '../hooks/revalidateStorefront'
 
 import type { CollectionConfig } from 'payload'
 
@@ -301,6 +302,16 @@ export const Products: CollectionConfig = {
         }
 
         return data
+      },
+    ],
+    afterChange: [
+      async () => {
+        await revalidateStorefront(['products'])
+      },
+    ],
+    afterDelete: [
+      async () => {
+        await revalidateStorefront(['products'])
       },
     ],
   },

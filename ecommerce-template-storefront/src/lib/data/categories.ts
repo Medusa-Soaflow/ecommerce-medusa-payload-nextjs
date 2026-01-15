@@ -10,6 +10,7 @@ import type {
 export const listCategories = async (query?: Record<string, any>) => {
   const next = {
     ...(await getCacheOptions("categories")),
+    tags: ["categories"],
   }
 
   const limit = query?.limit || 100
@@ -54,6 +55,7 @@ export const getCategoryByHandle = async (categoryHandle: string[]) => {
 
   const next = {
     ...(await getCacheOptions("categories")),
+    tags: ["categories"],
   }
 
   return sdk.client

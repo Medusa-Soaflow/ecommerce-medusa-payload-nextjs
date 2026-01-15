@@ -1,9 +1,22 @@
 import type { CollectionConfig } from 'payload'
+import { revalidateStorefront } from '../hooks/revalidateStorefront'
 
 export const Categories: CollectionConfig = {
   slug: 'categories',
   admin: {
     useAsTitle: 'title',
+  },
+  hooks: {
+    afterChange: [
+      async () => {
+        await revalidateStorefront(['categories'])
+      },
+    ],
+    afterDelete: [
+      async () => {
+        await revalidateStorefront(['categories'])
+      },
+    ],
   },
   fields: [
     {
